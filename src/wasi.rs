@@ -388,6 +388,8 @@ extern "C" {
     pub fn fgetc(f: *mut FILE) -> c_int;
     pub fn getc(f: *mut FILE) -> c_int;
     pub fn getchar() -> c_int;
+    pub fn getcwd(buf: *mut c_char, size: size_t) -> *mut c_char;
+    pub fn chdir(path: *const c_char) -> c_int;
     pub fn ungetc(a: c_int, f: *mut FILE) -> c_int;
     pub fn fputc(a: c_int, f: *mut FILE) -> c_int;
     pub fn putc(a: c_int, f: *mut FILE) -> c_int;
@@ -774,7 +776,9 @@ extern "C" {
     pub fn __wasilibc_rmdirat(fd: c_int, path: *const c_char) -> c_int;
     pub fn __wasilibc_find_relpath(
         path: *const c_char,
+        abs: *mut *const c_char,
         relative_path: *mut *const c_char,
+        relative_path_len: *mut size_t,
     ) -> c_int;
     pub fn __wasilibc_tell(fd: c_int) -> ::off_t;
 
